@@ -1,5 +1,5 @@
 gem 'pg'
-gem 'haml-rails'
+gem 'hamlit', '~> 2.8'
 
 gem_group :development, :test do
   gem 'rspec-rails'
