@@ -105,3 +105,4 @@ end
 
 git :init
 git add: '.s'
+git commit: '-am "Initial commit: clean Rails application"'
