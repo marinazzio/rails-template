@@ -16,6 +16,7 @@ gem_group :test do
   gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'capybara-screenshot'
+  gem 'shoulda-matchers'
 
   # code coverage
   # needs to be configured https://github.com/colszowka/simplecov
@@ -26,7 +27,6 @@ end
 
 gem_group :development, :test do
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
   gem 'rails-controller-testing'
 
   gem 'factory_girl_rails'
