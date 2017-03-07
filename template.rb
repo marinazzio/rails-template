@@ -12,16 +12,25 @@ if yes?("Would you like to install Devise?")
   generate "devise", model_name
 end
 
-gem_group :development, :test do
+gem_group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'faker', '>= 1.6.5'
+  gem 'shoulda-matchers'
   gem 'rails-controller-testing'
 
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'capybara-screenshot'
 
+  # code coverage
+  # needs to be configured https://github.com/colszowka/simplecov
+  gem 'simplecov', require: false
+  # https://github.com/fguillen/simplecov-rcov
+  gem 'simplecov-rcov', require: false
+end
+
+gem_group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker', '>= 1.6.5'
   # checks Gemfile.lock for outdated and insecure gems
   gem 'bundler-audit', require: false
 
@@ -33,13 +42,6 @@ gem_group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'scss_lint', require: false
   gem 'haml_lint', require: false
-
-  # code coverage
-  # needs to be configured https://github.com/colszowka/simplecov
-  gem 'simplecov', require: false
-  # https://github.com/fguillen/simplecov-rcov
-  gem 'simplecov-rcov', require: false
-
 end
 
 gem_group :development do
@@ -56,14 +58,6 @@ gem_group :development do
 
   # removes unneccessary spacings in data schema
   gem 'activerecord_sane_schema_dumper'
-end
-
-gem_group :test do
-  gem 'shoulda-matchers'
-
-  # code coverage report
-  # needs to be configured, https://github.com/colszowka/simplecov
-  gem 'simplecov', require: false
 end
 
 environment nil, env: 'development' do
