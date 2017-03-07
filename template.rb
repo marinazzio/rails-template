@@ -68,7 +68,7 @@ config.after_initialize do
     Bullet.alert = true
     Bullet.bullet_logger = true
     Bullet.console = true
-    Bullet.growl = true
+    Bullet.growl = false
     # Bullet.xmpp = { account: 'bullets_account@jabber.org',
     #                 password: 'bullets_password_for_jabber',
     #                 receiver: 'your_account@jabber.org',
@@ -99,6 +99,7 @@ BULLET
 end
 
 after_bundle do
+  run 'spring stop'
   generate 'rspec:install'
 
   git :init
