@@ -98,6 +98,8 @@ BULLET
 end
 
 after_bundle do
+  generate 'rspec:install'
+
   git :init
   git add: '.'
   git commit: '-am "Initial commit: clean Rails application"'
