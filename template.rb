@@ -13,10 +13,6 @@ if yes?("Would you like to install Devise?")
 end
 
 gem_group :test do
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
-
   gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'capybara-screenshot'
@@ -29,6 +25,10 @@ gem_group :test do
 end
 
 gem_group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+
   gem 'factory_girl_rails'
   gem 'faker', '>= 1.6.5'
   # checks Gemfile.lock for outdated and insecure gems
