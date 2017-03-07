@@ -99,6 +99,6 @@ end
 
 after_bundle do
   git :init
-  git add: '.s'
+  git add: '.'
   git commit: '-am "Initial commit: clean Rails application"'
 end
