@@ -55,6 +55,7 @@ gem_group :development do
   # helps reducing number of queries
   # needs to be cofigured https://github.com/flyerhzm/bullet
   gem 'bullet'
+  gem 'ruby-growl'
 
   # removes unneccessary spacings in data schema
   gem 'activerecord_sane_schema_dumper'
@@ -62,7 +63,7 @@ end
 
 environment nil, env: 'development' do
 <<-BULLET
-  config.after_initialize do
+config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true
     Bullet.bullet_logger = true
