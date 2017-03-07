@@ -102,3 +102,6 @@ environment nil, env: 'development' do
   end
 BULLET
 end
+
+git :init
+git add: '.s'
