@@ -97,6 +97,8 @@ environment nil, env: 'development' do
 BULLET
 end
 
-git :init
-git add: '.s'
-git commit: '-am "Initial commit: clean Rails application"'
+after_bundle do
+  git :init
+  git add: '.s'
+  git commit: '-am "Initial commit: clean Rails application"'
+end
