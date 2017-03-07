@@ -53,7 +53,8 @@ gem_group :test do
   gem 'simplecov', require: false
 end
 
-environment <<-BULLET
+environment nil, env: 'development' do
+<<-BULLET
 config.after_initialize do
   Bullet.enable = true
   Bullet.alert = true
@@ -87,4 +88,4 @@ config.after_initialize do
   # Bullet.counter_cache_enable        = false
 end
 BULLET
-, env: 'development'
+end
