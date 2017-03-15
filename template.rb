@@ -13,7 +13,6 @@ if yes?("Would you like to install Devise?")
 end
 
 gem_group :test do
-  gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'shoulda-matchers'
@@ -37,6 +36,10 @@ gem_group :development, :test do
   # analyzes ruby code for structural similarities
   gem 'flay'
 
+  gem 'spinach-rails'
+  gem 'spinach-rerun-reporter'
+  gem 'spring-commands-spinach'
+
   # overwatch for clean code
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -47,6 +50,8 @@ end
 gem_group :development do
   # checks security of the application
   gem 'brakeman', require: false
+
+  gem 'newrelic_rpm'
   
   # nice looking debug error page (runs better along with binding_of_caller)
   gem 'better_errors'
@@ -55,52 +60,21 @@ gem_group :development do
   # helps reducing number of queries
   # needs to be cofigured https://github.com/flyerhzm/bullet
   gem 'bullet'
-  gem 'ruby-growl'
 
   # removes unneccessary spacings in data schema
   gem 'activerecord_sane_schema_dumper'
 end
 
 environment nil, env: 'development' do
-<<-BULLET
-config.after_initialize do
-    Bullet.enable = true
-    Bullet.alert = true
-    Bullet.bullet_logger = true
-    Bullet.console = true
-    Bullet.growl = false
-    # Bullet.xmpp = { account: 'bullets_account@jabber.org',
-    #                 password: 'bullets_password_for_jabber',
-    #                 receiver: 'your_account@jabber.org',
-    #                 show_online_status: true }
-    Bullet.rails_logger = true
-    Bullet.honeybadger = true
-    Bullet.bugsnag = true
-    Bullet.airbrake = true
-    Bullet.rollbar = true
-    Bullet.add_footer = true
-    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
-    # Bullet.stacktrace_excludes = [ 'their_gem', 'their_middleware' ]
-    # Bullet.slack = { webhook_url: 'http://some.slack.url', channel: '#default', username: 'notifier' }
-   
-    # Each of these settings defaults to true
-
-    # Detect N+1 queries
-    # Bullet.n_plus_one_query_enable     = false
-
-    # Detect eager-loaded associations which are not used
-    # Bullet.unused_eager_loading_enable = false
-
-    # Detect unnecessary COUNT queries which could be avoided
-    # with a counter_cache
-    # Bullet.counter_cache_enable        = false
-  end
-BULLET
+  open('https://raw.githubusercontent.com/marinazzio/rails-template/master/bullet_config.rb').read
 end
 
 after_bundle do
   run 'spring stop'
   generate 'rspec:install'
+  generate 'spinach'
+
+  run 'newrelic install --license_key="YOUR_KEY" "My application"'
 
   git :init
   git add: '.'
