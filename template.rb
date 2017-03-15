@@ -6,10 +6,14 @@ gem 'hamlit', '~> 2.8'
 # optional Devise
 if yes?("Would you like to install Devise?")
   gem "devise"
-  generate "devise:install"
+
   model_name = ask("What would you like the user model to be called? [user]")
   model_name = "user" if model_name.blank?
-  generate "devise", model_name
+
+  after_bundle do
+    generate "devise:install"
+    generate "devise", model_name
+  end 
 end
 
 gem_group :test do
