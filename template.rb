@@ -4,16 +4,16 @@ gem 'pg'
 gem 'hamlit', '~> 2.8'
 
 # optional Devise
-if yes?("Would you like to install Devise?")
-  gem "devise"
+if yes?('Would you like to install Devise?')
+  gem 'devise'
 
-  model_name = ask("What would you like the user model to be called? [user]")
-  model_name = "user" if model_name.blank?
+  model_name = ask('What would you like the user model to be called? [user]')
+  model_name = 'user' if model_name.blank?
 
   after_bundle do
-    generate "devise:install"
-    generate "devise", model_name
-  end 
+    generate 'devise:install'
+    generate 'devise', model_name
+  end
 end
 
 gem_group :test do
@@ -29,6 +29,9 @@ gem_group :test do
 end
 
 gem_group :development, :test do
+  gem 'pry-byebug', platform: :mri
+  gem 'pry-rails'
+
   gem 'rspec-rails'
   gem 'rails-controller-testing'
 
@@ -56,7 +59,7 @@ gem_group :development do
   gem 'brakeman', require: false
 
   gem 'newrelic_rpm'
-  
+
   # nice looking debug error page (runs better along with binding_of_caller)
   gem 'better_errors'
   gem 'binding_of_caller'
