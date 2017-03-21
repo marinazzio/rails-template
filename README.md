@@ -12,5 +12,5 @@ Template for creating Ruby-on-Rails applications
 
 ## Usage
 ```console
-$ rails new my_new_application -T -m https://raw.githubusercontent.com/marinazzio/rails-template/master/template.rb
+$ rails new my_new_application --skip-test --template=https://raw.githubusercontent.com/marinazzio/rails-template/master/template.rb
 ```
