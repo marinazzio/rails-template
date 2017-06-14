@@ -43,9 +43,7 @@ gem_group :development, :test do
   # analyzes ruby code for structural similarities
   gem 'flay'
 
-  gem 'spinach-rails'
-  gem 'spinach-rerun-reporter'
-  gem 'spring-commands-spinach'
+  gem 'cucumber-rails'
 
   # overwatch for clean code
   gem 'rubocop', require: false
@@ -83,7 +81,7 @@ end
 after_bundle do
   run 'spring stop'
   generate 'rspec:install'
-  generate 'spinach'
+  generate 'cucumber'
 
   run 'guard init'
   run 'guard init rspec'
