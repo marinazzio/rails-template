@@ -70,6 +70,10 @@ gem_group :development do
 
   # removes unneccessary spacings in data schema
   gem 'activerecord_sane_schema_dumper'
+
+  # watch files when they change and runs tests
+  gem 'guard', require: false
+  gem 'guard-rspec', require: false
 end
 
 environment nil, env: 'development' do
@@ -80,6 +84,9 @@ after_bundle do
   run 'spring stop'
   generate 'rspec:install'
   generate 'spinach'
+
+  run 'guard init'
+  run 'guard init rspec'
 
   run 'newrelic install --license_key="YOUR_KEY" "My application"'
 
