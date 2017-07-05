@@ -1,7 +1,8 @@
 # PostgreSQL by default
 gem 'pg'
-# light and fast haml parser
-gem 'hamlit', '~> 2.8'
+
+# templates with slim
+gem 'slim-rails'
 
 # optional Devise
 if yes?('Would you like to install Devise?')
@@ -49,7 +50,6 @@ gem_group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'scss_lint', require: false
-  gem 'haml_lint', require: false
 end
 
 gem_group :development do
