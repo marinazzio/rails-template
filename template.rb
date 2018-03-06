@@ -1,5 +1,6 @@
 # PostgreSQL by default
-gem 'pg'
+# v1.0.0 doesn't work with rails 5.1
+gem 'pg', '< 1.0.0'
 
 # templates with slim
 gem 'slim-rails'
@@ -36,8 +37,8 @@ gem_group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
 
-  gem 'factory_girl_rails'
-  gem 'faker', '>= 1.6.5'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
   # checks Gemfile.lock for outdated and insecure gems
   gem 'bundler-audit', require: false
 
@@ -88,7 +89,9 @@ after_bundle do
 
   run 'newrelic install --license_key="YOUR_KEY" "My application"'
 
-  git :init
-  git add: '.'
-  git commit: '-am "Initial commit: clean Rails application"'
+  if yes?('Would you like to initialize git?')
+    git :init
+    git add: '.'
+    git commit: '-am "Initial commit: clean Rails application"'
+  end
 end
