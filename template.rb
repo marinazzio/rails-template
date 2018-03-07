@@ -21,6 +21,7 @@ end
 gem_group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
+  gem 'database_cleaner'
   gem 'shoulda-matchers'
 
   # code coverage
