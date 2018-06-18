@@ -1,6 +1,5 @@
-# PostgreSQL by default
-# v1.0.0 doesn't work with rails 5.1
-gem 'pg', '< 1.0.0'
+# PostgreSQL
+gem 'pg'
 
 # templates with slim
 gem 'slim-rails'
@@ -11,11 +10,6 @@ if yes?('Would you like to install Devise?')
 
   model_name = ask('What would you like the user model to be called? [user]')
   model_name = 'user' if model_name.blank?
-
-  after_bundle do
-    generate 'devise:install'
-    generate 'devise', model_name
-  end
 end
 
 gem_group :test do
@@ -78,21 +72,4 @@ end
 
 environment nil, env: 'development' do
   open('https://raw.githubusercontent.com/marinazzio/rails-template/master/bullet_config.rb').read
-end
-
-after_bundle do
-  run 'spring stop'
-  generate 'rspec:install'
-  generate 'cucumber'
-
-  run 'guard init'
-  run 'guard init rspec'
-
-  run 'newrelic install --license_key="YOUR_KEY" "My application"'
-
-  if yes?('Would you like to initialize git?')
-    git :init
-    git add: '.'
-    git commit: '-am "Initial commit: clean Rails application"'
-  end
 end

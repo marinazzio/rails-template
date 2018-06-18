@@ -15,3 +15,20 @@ Template for creating Ruby-on-Rails applications
 $ rails new my_new_application --skip-test \
   --template=https://raw.githubusercontent.com/marinazzio/rails-template/master/template.rb
 ```
+
+Since `after_bundle` is deprecated it is required to run some initialization commands:
+
+```console
+  # with devise
+  bundle exec rails generate devise:install
+  # assuming User is the name of devise model
+  bundle exec rails generate devise user
+
+  bundle exec rails generate rspec:install
+  bundle exec rails generate cucumber
+  bundle exec guard init
+  bundle exec guard init rspec
+
+  # replace YOUR_KEY with your newrelic key
+  bundle exec newrelic install --license_key="YOUR_KEY" "My application"
+```
